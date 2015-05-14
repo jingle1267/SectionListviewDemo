@@ -55,11 +55,23 @@ public class SlideBar extends View {
         }
 		letters = arr;
 	}
-	
+
+	/**
+	 * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+	 *
+	 * @param context 上下文
+	 * @param dpValue 尺寸dip
+	 * @return 像素值
+	 */
+	public static int dip2px(Context context, float dpValue) {
+		final float scale = context.getResources().getDisplayMetrics().density;
+		return (int) (dpValue * scale + 0.5f);
+	}
+
 	@Override
 	protected void onDraw(Canvas canvas) {
 		super.onDraw(canvas);
-		float fontSize = 15;
+		float fontSize = dip2px(getContext(), 13);
 		// 获取宽和高
 		int width = getWidth();
 		int height = getHeight() - (int)fontSize * 2;

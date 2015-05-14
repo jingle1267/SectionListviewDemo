@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.*;
-import com.worthed.sectionlistview.R;
 import net.sourceforge.pinyin4j.PinyinHelper;
 
 import java.util.ArrayList;
@@ -52,9 +51,21 @@ public class ChooseAreaCodeActivity extends ListActivity {
 		initSlideBar();
 	}
 
+	/**
+	 * 根据手机的分辨率从 dp 的单位 转成为 px(像素)
+	 *
+	 * @param context 上下文
+	 * @param dpValue 尺寸dip
+	 * @return 像素值
+	 */
+	public static int dip2px(Context context, float dpValue) {
+		final float scale = context.getResources().getDisplayMetrics().density;
+		return (int) (dpValue * scale + 0.5f);
+	}
+
 	private void initSlideBar() {
 		mSlideBar = new SlideBar(this);
-		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(60, RelativeLayout.LayoutParams.MATCH_PARENT);
+		RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(dip2px(ChooseAreaCodeActivity.this, 25), RelativeLayout.LayoutParams.MATCH_PARENT);
 		layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		layoutParams.addRule(RelativeLayout.CENTER_VERTICAL);
 		relativeLayout.addView(mSlideBar, layoutParams);
