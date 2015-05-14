@@ -1,15 +1,4 @@
-package com.worthed.sectionlistview;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Set;
-
-import net.sourceforge.pinyin4j.PinyinHelper;
-
-import com.hb.views.PinnedSectionListView.PinnedSectionListAdapter;
-import com.worthed.sectionlistview.LocationLoadUtil.OnLocationLoadListener;
-import com.worthed.sectionlistview.SlideBar.OnTouchLetterChangeListenner;
+package com.ihongqiqu.sectionlistview;
 
 import android.app.ListActivity;
 import android.content.Context;
@@ -20,11 +9,14 @@ import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
+import com.worthed.sectionlistview.R;
+import net.sourceforge.pinyin4j.PinyinHelper;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Set;
 
 public class ChooseAreaCodeActivity extends ListActivity {
 
@@ -47,7 +39,7 @@ public class ChooseAreaCodeActivity extends ListActivity {
 		requestWindowFeature(Window.FEATURE_NO_TITLE);
 		setContentView(R.layout.area_code_choose_layout);
 		relativeLayout = (RelativeLayout) findViewById(R.id.area_code_layout);
-		LocationLoadUtil.exportPhoneCode(this, new OnLocationLoadListener() {
+		LocationLoadUtil.exportPhoneCode(this, new LocationLoadUtil.OnLocationLoadListener() {
 			public void onFinised(Object v1, Object v2, Object v3, Object v4) {
 				nationCodes = (ArrayList<String>) v1;
 				phoneCodes = (HashMap<String, String>) v2;
@@ -69,7 +61,7 @@ public class ChooseAreaCodeActivity extends ListActivity {
 		getListView().setVerticalScrollBarEnabled(false);
 		mSlideBar.setVisibility(View.INVISIBLE);
 		mSlideBar.setBackgroundResource(R.drawable.contact_quick_index_bg);
-		mSlideBar.setOnTouchLetterChangeListenner(new OnTouchLetterChangeListenner() {
+		mSlideBar.setOnTouchLetterChangeListenner(new SlideBar.OnTouchLetterChangeListenner() {
 
 			@Override
 			public void onTouchLetterChange(boolean isTouched, String s, int pos) {
@@ -181,7 +173,7 @@ public class ChooseAreaCodeActivity extends ListActivity {
 		return null;
 	}
 	
-	class SimpleAdapter extends ArrayAdapter<Item> implements PinnedSectionListAdapter {
+	class SimpleAdapter extends ArrayAdapter<Item> implements PinnedSectionListView.PinnedSectionListAdapter {
 
         private final int[] COLORS = new int[] {
             android.R.color.holo_blue_dark,  android.R.color.holo_green_light,

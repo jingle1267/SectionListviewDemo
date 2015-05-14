@@ -1,7 +1,6 @@
-package com.worthed.sectionlistview;
+package com.ihongqiqu.sectionlistview;
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;

@@ -1,4 +1,4 @@
-package com.worthed.sectionlistview;
+package com.ihongqiqu.sectionlistview;
 
 import android.content.Context;
 
